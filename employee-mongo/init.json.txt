@@ -1,0 +1,32 @@
+[
+    {
+        "userId": "111",
+        "firstName": "Rita",
+        "lastName": "Jo",
+        "address": "555 Seminary St",
+        "state": "WA",
+        "zip": "90412",
+        "cellPhone": "2345678901",
+        "email": "ritajo@mail.com"
+    },
+    {
+        "userId": "222",
+        "firstName": "Ray",
+        "lastName": "Draco",
+        "address": "888 Cherry St",
+        "state": "WA",
+        "zip": "90412",
+        "cellPhone": "60987435623",
+        "email": "joe@mail.com"
+    },
+    {
+        "userId": "444",
+        "firstName": "Joanna",
+        "lastName": "Doe",
+        "address": "555 Cherry St",
+        "state": "WA",
+        "zip": "90412",
+        "cellPhone": "60987435623",
+        "email": "joe@mail.com"
+    }
+]
