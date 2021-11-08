@@ -1,0 +1,9 @@
+com\fscc\kafka\service\ConsumerService.class
+com\fscc\kafka\service\ProducerService.class
+com\fscc\kafka\model\User.class
+com\fscc\kafka\controller\KafkaController.class
+com\fscc\kafka\service\impl\ConsumerServiceImpl.class
+com\fscc\kafka\config\KafkaConfig.class
+com\fscc\kafka\repository\KafkaRepository.class
+com\fscc\kafka\service\impl\ProducerServiceImpl.class
+com\fscc\kafka\KafkaApplication.class
