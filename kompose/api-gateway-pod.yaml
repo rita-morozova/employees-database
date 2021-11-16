@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: api-gateway
+  name: api-gateway
+spec:
+  containers:
+    - env:
+        - name: EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE
+          value: http://eureka-service:8761/eureka/
+        - name: ZUUL_ROUTES_EMPLOYEE-WS_URL
+          value: http://employee-service:9003
+        - name: ZUUL_ROUTES_LOGIN-WS_URL
+          value: http://login-service:9001
+        - name: ZUUL_SENSITIVEHEADERS
+      image: api-gateway:1.0
+      name: api-gateway
+      ports:
+        - containerPort: 8083
+      resources: {}
+  restartPolicy: OnFailure
+status: {}
