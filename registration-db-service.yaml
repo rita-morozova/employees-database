@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: registration-db
+  name: registration-db
+spec:
+  ports:
+    - name: "27019"
+      port: 27019
+      targetPort: 27019
+  selector:
+    io.kompose.service: registration-db
+status:
+  loadBalancer: {}
