@@ -1,0 +1,24 @@
+<div class="login-page">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="text-center border border-light p-5 col-7">
+    <p class="h4 mb-4">Log in</p>
+      <input formControlName="email" type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+      <div *ngIf="email.invalid && submitted" class="alert alert-danger mb-4">
+        <div *ngIf="email.errors.required">Email is required</div>
+        <div *ngIf="email.errors.minlength">Email must be at least 8 characters</div>
+        <div *ngIf="email.errors.maxlength">Email must be at most 35 characters</div>
+        <div *ngIf="email.errors.pattern">Email must be a valid email address</div>
+      </div>
+
+      <input formControlName="password" type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+      <div *ngIf="password.invalid && submitted" class="alert alert-danger mb-4">
+        <div *ngIf="password.errors.required">Password is required</div>
+        <div *ngIf="password.errors.minlength">Password must be at least 8 characters</div>
+        <div *ngIf="password.errors.maxlength">Password must be at most 35 characters</div>
+        <div *ngIf="password.errors.pattern">Password can only be letters and numbers</div>
+      </div>
+
+    <!-- Submit button-->
+    <button type="submit" mdbBtn color="info" block="true" class="my-4">LOG IN</button>
+    <div *ngIf="invalidLogin" class="alert alert-danger">{{errorMessage}}</div>
+  </form>
+</div>

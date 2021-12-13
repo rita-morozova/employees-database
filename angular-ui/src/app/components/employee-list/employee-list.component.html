@@ -1,0 +1,28 @@
+<div class="card">
+<h3 class="text-center card-header font-weight-bold text-uppercase py-4">Employees</h3>
+<div class="row justify-content-center col-md-12 mx-auto" >
+  <div class="center-table card-body">
+    <section class="table-add float-right mb-3 mr-2">
+      <a routerLink="/employees/add" routerLinkActive="active-link">
+        <button mdbBtn color="info" mdbWavesEffect> Add Employee</button>
+      </a>
+    </section>
+    <table mdbTable hover="true">
+      <thead class="stylish-color white-text">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees" mdbTableCol>
+          <a routerLink="/employee/{{ employee.userId }}" routerLinkActive="active-link">
+            <td scope="row">{{ employee.firstName + " " + employee.lastName }}</td>
+          </a>
+          <td scope="row">{{ employee.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
