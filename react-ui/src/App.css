@@ -1,0 +1,26 @@
+.App {
+  text-align: center;
+}
+
+.table.table-hover tbody tr:hover {
+  background-color: #33b6e585;
+
+}
+
+.error {
+  color: red;
+  font-size: 10pt;
+}
+
+.sized {
+  width: 120px;
+  height: 45px;
+}
+
+
+
+
+
+
+
+
