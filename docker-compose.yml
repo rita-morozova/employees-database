@@ -1,0 +1,162 @@
+version: "3.8"
+services:
+  employee-db:
+    image: mongo:4.2.2
+    container_name: employee-db
+    restart: on-failure
+    ports:
+      - 27017:27017
+    volumes:
+      - ./employee-mongo/data:/data/db
+
+  login-db:
+    image: login-mongo:1.0
+    container_name: login-db
+    restart: on-failure
+    command: mongod --port 27018
+    ports:
+      - 27018:27018
+    volumes:
+      - ./login-mongo/data:/data/db  
+
+  registration-db:
+    image: registration-mongo:1.0
+    container_name: registration-db
+    restart: on-failure
+    command: mongod --port 27019
+    ports:
+      - 27019:27019
+    volumes:
+      - ./registration-mongo/data:/data/db     
+
+       
+  employee-service:
+    image: employeeservice:4.0
+    container_name: employee-service
+    restart: on-failure
+    ports:
+      - 9003:9003
+    depends_on:
+      - employee-db
+      - eureka-service 
+    environment:
+      - SPRING_DATA_MONGODB_DATABASE=Employee
+      - SPRING_DATA_MONGODB_URI=mongodb://employee-db:27017/
+      - EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE=http://eureka-service:8761/eureka/
+   
+
+  login-service:
+    image: loginservice:3.0
+    container_name: login-service
+    restart: on-failure
+    ports:
+      - 9001:9001
+    depends_on:
+      - login-db
+      - eureka-service 
+    environment:
+      - SPRING_DATA_MONGODB_DATABASE=Login
+      - SPRING_DATA_MONGODB_URI=mongodb://login-db:27018/
+      - EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE=http://eureka-service:8761/eureka/
+   
+
+  eureka-service:
+    image: discovery-service:1.0
+    container_name: eureka-service
+    restart: on-failure
+    environment:
+      - EUREKA_CLIENT_REGISTER-WITH-EUREKA=false
+      - EUREKA_CLIENT_FETCH-REGISTRY=false
+    ports:
+      - 8761:8761 
+
+  api-gateway:
+    image: api-gateway:1.0
+    container_name: api-gateway
+    ports:
+      - 8083:8083
+    depends_on:
+      - eureka-service
+      - login-service
+      - employee-service
+    restart: on-failure
+    environment:
+      - EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE=http://eureka-service:8761/eureka/
+      - ZUUL_ROUTES_LOGIN-WS_URL=http://login-service:9001
+      - ZUUL_ROUTES_EMPLOYEE-WS_URL=http://employee-service:9003
+    # to make Zuul send all headers, explicitly set it to the empty list 
+      - ZUUL_SENSITIVEHEADERS=
+
+  registration-service:
+    image: registrationservice:2.0
+    container_name: registration-service
+    restart: on-failure
+    ports:
+      - 9093:9093
+    depends_on:
+      - kafka-cluster
+      - registration-db
+      - eureka-service 
+    environment:
+      - SPRING_DATA_MONGODB_DATABASE=Registration
+      - SPRING_DATA_MONGODB_URI=mongodb://registration-db:27019/
+      - EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE=http://eureka-service:8761/eureka/
+      - SPRING_KAFKA_CONSUMER_BOOTSTRAP-SERVERS=kafka-cluster:29092
+      - SPRING_KAFKA_PRODUCER_BOOTSTRAP-SERVERS=kafka-cluster:29092
+      - SPRING_KAFKA_CONSUMER_GROUP-ID=group_id   
+
+  zookeeper:
+    image: zookeeper:3.7.0
+    container_name: zookeeper
+    restart: always
+    ports:
+      - 2181:2181
+
+  kafka-cluster:
+    image: wurstmeister/kafka:2.13-2.7.0
+    container_name: kafka-cluster
+    restart: always
+    ports:
+      - 9092:9092
+    environment:
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=DOCKER_INTERNAL:PLAINTEXT,DOCKER_EXTERNAL:PLAINTEXT
+      - KAFKA_LISTENERS=DOCKER_INTERNAL://:29092,DOCKER_EXTERNAL://:9092
+      - KAFKA_ADVERTISED_LISTENERS=DOCKER_INTERNAL://kafka-cluster:29092,DOCKER_EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9092
+      - KAFKA_INTER_BROKER_LISTENER_NAME=DOCKER_INTERNAL
+      # - KAFKA_ADVERTISED_HOST_NAME=kafka-cluster
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_BROKER_ID=1
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_CREATE_TOPICS=t_employee_registration:1:1
+    depends_on:
+      - zookeeper  
+
+  angular-ui:
+    image: angular-ui:2.0
+    container_name: angular-ui
+    restart: always
+    ports:
+      - 4200:4200
+    depends_on:
+      - api-gateway  
+
+  react-ui:
+    image: react-ui:1.0
+    container_name: react-ui
+    stdin_open: true
+    restart: always 
+    ports:
+      - 3000:3000
+    depends_on:
+      - api-gateway             
+    
+    
+   
+volumes:
+  employee-db:
+  login-db:
+  registration-db:
+            
+
+   
+   
