@@ -77,14 +77,14 @@ export class AddFormComponent implements OnInit {
 
 
   constructor(private employeeService: EmployeeListService,
-              private formBuilder: FormBuilder,
-              private router: Router,
-              private route: ActivatedRoute,
-              private token: TokenStorageService
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
+    private token: TokenStorageService
   ) { }
 
   ngOnInit(): void {
-    if (this.token.getToken()){
+    if (this.token.getToken()) {
       // console.log(this.token.getToken())
       this.displayForm();
       this.getEmployee(this.route.snapshot.paramMap.get('id'));
@@ -93,18 +93,18 @@ export class AddFormComponent implements OnInit {
 
   displayForm() {
     this.addFormGroup = this.formBuilder.group({
-      firstName: new FormControl ("", [Validators.required, Validators.minLength(2),Validators.maxLength(35), Validators.pattern("[A-Za-z]*"), CustomValidator.notOnlyWhiteSpace]),
-      lastName: new FormControl ("", [Validators.required, Validators.minLength(2),Validators.maxLength(35), Validators.pattern("[A-Za-z]*"), CustomValidator.notOnlyWhiteSpace]),
-      address: new FormControl ("", [Validators.required, Validators.minLength(10),Validators.maxLength(50), Validators.pattern("[A-Za-z\\'\\- 0-9]*"), CustomValidator.notOnlyWhiteSpace]),
-      state: new FormControl ("", [Validators.required]),
-      zip: new FormControl ("", [Validators.required, Validators.minLength(5),Validators.maxLength(9), Validators.pattern("[0-9]*"), CustomValidator.notOnlyWhiteSpace]),
-      cellPhone: new FormControl ("", [Validators.required, Validators.minLength(10),Validators.maxLength(10), Validators.pattern("[0-9]*"), CustomValidator.notOnlyWhiteSpace]),
-      email: new FormControl ("", [Validators.required, Validators.minLength(8),Validators.maxLength(50), Validators.pattern("^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+      firstName: new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(35), Validators.pattern("[A-Za-z]*"), CustomValidator.notOnlyWhiteSpace]),
+      lastName: new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(35), Validators.pattern("[A-Za-z]*"), CustomValidator.notOnlyWhiteSpace]),
+      address: new FormControl("", [Validators.required, Validators.minLength(10), Validators.maxLength(50), Validators.pattern("[A-Za-z\\'\\- 0-9]*"), CustomValidator.notOnlyWhiteSpace]),
+      state: new FormControl("", [Validators.required]),
+      zip: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(9), Validators.pattern("[0-9]*"), CustomValidator.notOnlyWhiteSpace]),
+      cellPhone: new FormControl("", [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("[0-9]*"), CustomValidator.notOnlyWhiteSpace]),
+      email: new FormControl("", [Validators.required, Validators.minLength(8), Validators.maxLength(50), Validators.pattern("^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
     })
   }
 
-// getters used by the HTML template to get access to the form control
-// and check if the form is valid
+  // getters used by the HTML template to get access to the form control
+  // and check if the form is valid
   get id() { return this.addFormGroup.get('id') }
   get firstName() { return this.addFormGroup.get('firstName') }
   get lastName() { return this.addFormGroup.get('lastName') }
@@ -115,7 +115,7 @@ export class AddFormComponent implements OnInit {
   get email() { return this.addFormGroup.get('email') }
 
   onSubmit() {
-    if(this.employee.userId === null || this.employee.userId === undefined){
+    if (this.employee.userId === null || this.employee.userId === undefined) {
       this.addEmployee();
     } else {
       this.updateEmployee();
@@ -128,19 +128,19 @@ export class AddFormComponent implements OnInit {
       return;
     }
     this.employeeService.addEmployee(this.addFormGroup.value)
-    .subscribe(
-      data => {
-        console.log(data);
-        this.router.navigate(["/employees"]);
-      },
-      error => {
-        console.log(error);
-      }
-    )
+      .subscribe(
+        data => {
+          console.log(data);
+          this.router.navigate(["/employees"]);
+        },
+        error => {
+          console.log(error);
+        }
+      )
   }
 
   getEmployee(id) {
-    if(id === null || id === undefined) {
+    if (id === null || id === undefined) {
       this.employee = {
         id: null,
         userId: null,

@@ -15,13 +15,13 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'employee/:id', component: AddFormComponent, canActivate: [AuthGuard] },
-  { path: 'employees/add', component: AddFormComponent, canActivate: [AuthGuard] },
-  { path: 'employees', component: EmployeeListComponent, canActivate: [AuthGuard] },
-  { path: '**', redirectTo: '', pathMatch: 'full'}
+  { path: "", component: LoginComponent },
+  { path: "employee/:id", component: AddFormComponent, canActivate: [AuthGuard] },
+  { path: "employees/add", component: AddFormComponent, canActivate: [AuthGuard] },
+  { path: "employees", component: EmployeeListComponent, canActivate: [AuthGuard] },
+  { path: "**", redirectTo: "", pathMatch: "full" }
 
-];
+]
 
 @NgModule({
   declarations: [

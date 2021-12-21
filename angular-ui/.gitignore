@@ -44,8 +44,3 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-
-/e2e
-tslint.json
-tsconfig.spec.json
-karma.conf.js

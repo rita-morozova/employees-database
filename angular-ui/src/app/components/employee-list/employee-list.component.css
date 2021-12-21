@@ -1,3 +1,12 @@
+.table.table-hover tbody tr:hover {
+  background-color: #33b6e585;
+}
+a {
+  all: unset;
+}
+a:hover {
+  cursor: pointer;
+}
 @media all and (min-width: 768px) {
   tr  {
     td {

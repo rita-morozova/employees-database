@@ -11,9 +11,9 @@ export class AppHeaderComponent implements OnInit {
   isUserLoggedIn: boolean = false;
 
   constructor(private token: TokenStorageService,
-              public login: LoginService) { }
+    public login: LoginService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   logOut() {
     this.token.signOut();

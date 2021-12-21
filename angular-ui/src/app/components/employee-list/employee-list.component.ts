@@ -13,11 +13,11 @@ export class EmployeeListComponent implements OnInit {
   employees: any;
 
   constructor(private employeeService: EmployeeListService,
-              private token: TokenStorageService
+    private token: TokenStorageService
   ) { }
 
   ngOnInit() {
-    if (this.token.getToken()){
+    if (this.token.getToken()) {
       this.listEmployees()
     } else {
       console.log("Access denied")

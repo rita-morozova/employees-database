@@ -1,123 +1,124 @@
 <div class="justify-content-center">
   <div class="col-md-14 mx-auto">
     <div class="add-form-header">
-      <h3 *ngIf="!employee.userId" class="text-center card-header font-weight-bold text-uppercase py-4">New Employee</h3>
-      <h3 *ngIf="employee.userId" class="text-center card-header font-weight-bold text-uppercase py-4">Edit Employee</h3>
+      <h3 *ngIf="!employee.userId" class="text-center card-header font-weight-bold text-uppercase py-4">New Employee
+      </h3>
+      <h3 *ngIf="employee.userId" class="text-center card-header font-weight-bold text-uppercase py-4">Edit Employee
+      </h3>
     </div>
 
     <!-- Delete Employee Button-->
     <div class="p-2 text-right col-md-9 mx-auto">
-      <button *ngIf="employee.userId" mdbBtn class="btn-danger btn-sm" (click)="deleteEmployee()">Delete Employee</button>
+      <button *ngIf="employee.userId" mdbBtn class="btn-danger" (click)="deleteEmployee()">Delete Employee</button>
     </div>
   </div>
 
-    <form [formGroup]="addFormGroup" (ngSubmit)="onSubmit()" class="col-md-9 mx-auto">
-      <!-- 2 column grid layout with text inputs for the first and last names -->
-      <div class="row mb-4">
-        <div class="col">
-          <div class="form-outline">
-            <input type="text" formControlName="firstName" class="form-control" placeholder="First Name" />
-              <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger mt-1">
-                <div *ngIf="firstName.errors.required || firstName.errors.notOnlyWhiteSpace">First name is required</div>
-                <div *ngIf="firstName.errors.minlength">First name must be at least 2 characters</div>
-                <div *ngIf="firstName.errors.maxlength">First name must be at most 35 characters</div>
-                <div *ngIf="firstName.errors.pattern">First name can only be letters</div>
-              </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="form-outline">
-            <input formControlName="lastName" type="text" class="form-control" placeholder="Last Name">
-              <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger mt-1">
-                <div *ngIf="lastName.errors.required || lastName.errors.notOnlyWhiteSpace">Last name is required</div>
-                <div *ngIf="lastName.errors.minlength">Last name must be at least 2 characters</div>
-                <div *ngIf="lastName.errors.maxlength">Last name must be at most 35 characters</div>
-                <div *ngIf="lastName.errors.pattern">Last name can only be letters</div>
-              </div>
+  <form [formGroup]="addFormGroup" (ngSubmit)="onSubmit()" class="col-md-9 mx-auto">
+    <!-- 2 column grid layout with text inputs for the first and last names -->
+    <div class="row mb-4">
+      <div class="col">
+        <div class="form-outline">
+          <input type="text" formControlName="firstName" class="form-control" placeholder="First Name" />
+          <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="error mt-1">
+            <div *ngIf="firstName.errors.required || firstName.errors.notOnlyWhiteSpace">First name is required</div>
+            <div *ngIf="firstName.errors.minlength">First name must be at least 2 characters</div>
+            <div *ngIf="firstName.errors.maxlength">First name must be at most 35 characters</div>
+            <div *ngIf="firstName.errors.pattern">First name can only be letters</div>
           </div>
         </div>
       </div>
 
-      <!-- 3 column grid layout for the address, state and zip -->
-      <div class="row mb-4">
-        <div class="col">
-          <div class="form-outline">
-            <input formControlName="address" type="text" class="form-control" placeholder="Address">
-              <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger mt-1">
-                <div *ngIf="address.errors.required || address.errors.notOnlyWhiteSpace">Address is required</div>
-                <div *ngIf="address.errors.minlength">Address must be at least 10 characters</div>
-                <div *ngIf="address.errors.maxlength">Address must be at most 50 characters</div>
-                <div *ngIf="address.errors.pattern">Address can only be letters and numbers</div>
-              </div>
+      <div class="col">
+        <div class="form-outline">
+          <input formControlName="lastName" type="text" class="form-control" placeholder="Last Name">
+          <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="error mt-1">
+            <div *ngIf="lastName.errors.required || lastName.errors.notOnlyWhiteSpace">Last name is required</div>
+            <div *ngIf="lastName.errors.minlength">Last name must be at least 2 characters</div>
+            <div *ngIf="lastName.errors.maxlength">Last name must be at most 35 characters</div>
+            <div *ngIf="lastName.errors.pattern">Last name can only be letters</div>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div class="col">
-          <div class="form-outline">
-            <select formControlName="state" class="form-control" >
-              <option value="" disabled>State</option>
-              <option *ngFor="let state of states" value="{{state}}">
-                {{ state }}
-              </option>
-            </select>
-            <div *ngIf="state.invalid && (state.dirty || state.touched)" class="alert alert-danger mt-1">
-              <div *ngIf="state.errors.required">State is required</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="form-outline">
-            <input formControlName="zip" type="text" class="form-control" placeholder="Zip Code">
-            <div *ngIf="zip.invalid && (zip.dirty || zip.touched)" class="alert alert-danger mt-1">
-              <div *ngIf="zip.errors.required || zip.errors.notOnlyWhiteSpace">Zip Code is required</div>
-              <div *ngIf="zip.errors.minlength">Zip Code must be at least 5 characters</div>
-              <div *ngIf="zip.errors.maxlength">Zip Code must be at most 9 characters</div>
-              <div *ngIf="zip.errors.pattern">Zip Code can only be numbers</div>
-            </div>
+    <!-- 3 column grid layout for the address, state and zip -->
+    <div class="row mb-4">
+      <div class="col">
+        <div class="form-outline">
+          <input formControlName="address" type="text" class="form-control" placeholder="Address">
+          <div *ngIf="address.invalid && (address.dirty || address.touched)" class="error mt-1">
+            <div *ngIf="address.errors.required || address.errors.notOnlyWhiteSpace">Address is required</div>
+            <div *ngIf="address.errors.minlength">Address must be at least 10 characters</div>
+            <div *ngIf="address.errors.maxlength">Address must be at most 50 characters</div>
+            <div *ngIf="address.errors.pattern">Address can only be letters and numbers</div>
           </div>
         </div>
       </div>
 
-      <!-- 2 column grid layout with text inputs for the cell phone and email -->
-      <div class="row mb-4">
-        <div class="col">
-          <div class="form-outline">
-            <input formControlName="cellPhone" type="text" class="form-control" placeholder="Cell Phone">
-              <div *ngIf="cellPhone.invalid && (cellPhone.dirty || cellPhone.touched)" class="alert alert-danger mt-1">
-                <div *ngIf="cellPhone.errors.required || cellPhone.errors.notOnlyWhiteSpace">Cell phone is required</div>
-                <div *ngIf="cellPhone.errors.minlength">Cell phone must be 10 characters</div>
-                <div *ngIf="cellPhone.errors.maxlength">Cell phone must be 10 characters</div>
-                <div *ngIf="cellPhone.errors.pattern">Cell phone can only be numbers</div>
-              </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="form-outline">
-            <input formControlName="email" type="text" class="form-control" placeholder="Email Address">
-              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger mt-1">
-                <div *ngIf="email.errors.required || email.errors.notOnlyWhiteSpace">Email is required</div>
-                <div *ngIf="email.errors.minlength">Email must be at least 8 characters</div>
-                <div *ngIf="email.errors.maxlength">Email must be at most 50 characters</div>
-                <div *ngIf="email.errors.pattern">Email must be a valid email address</div>
-              </div>
+      <div class="col">
+        <div class="form-outline">
+          <select formControlName="state" class="form-control">
+            <option value="" disabled>State</option>
+            <option *ngFor="let state of states" value="{{state}}">
+              {{ state }}
+            </option>
+          </select>
+          <div *ngIf="state.invalid && (state.dirty || state.touched)" class="error mt-1">
+            <div *ngIf="state.errors.required">State is required</div>
           </div>
         </div>
       </div>
 
-
-      <section class="divider"></section>
-
-      <!-- submit/cancel button-->
-      <div>
-        <button type="submit"  class="center-btn btn btn-info btn-block mb-2 ">Save</button>
-
-        <a routerLink="/employees">
-          <button class="center-btn btn btn-danger btn-block mb-2 ">Cancel</button>
-        </a>
+      <div class="col">
+        <div class="form-outline">
+          <input formControlName="zip" type="text" class="form-control" placeholder="Zip Code">
+          <div *ngIf="zip.invalid && (zip.dirty || zip.touched)" class="error mt-1">
+            <div *ngIf="zip.errors.required || zip.errors.notOnlyWhiteSpace">Zip Code is required</div>
+            <div *ngIf="zip.errors.minlength">Zip Code must be at least 5 characters</div>
+            <div *ngIf="zip.errors.maxlength">Zip Code must be at most 9 characters</div>
+            <div *ngIf="zip.errors.pattern">Zip Code can only be numbers</div>
+          </div>
+        </div>
       </div>
-    </form>
+    </div>
+
+    <!-- 2 column grid layout with text inputs for the cell phone and email -->
+    <div class="row mb-4">
+      <div class="col">
+        <div class="form-outline">
+          <input formControlName="cellPhone" type="text" class="form-control" placeholder="Cell Phone">
+          <div *ngIf="cellPhone.invalid && (cellPhone.dirty || cellPhone.touched)" class="error mt-1">
+            <div *ngIf="cellPhone.errors.required || cellPhone.errors.notOnlyWhiteSpace">Cell phone is required</div>
+            <div *ngIf="cellPhone.errors.minlength">Cell phone must be 10 characters</div>
+            <div *ngIf="cellPhone.errors.maxlength">Cell phone must be 10 characters</div>
+            <div *ngIf="cellPhone.errors.pattern">Cell phone can only be numbers</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-outline">
+          <input formControlName="email" type="text" class="form-control" placeholder="Email Address">
+          <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error mt-1">
+            <div *ngIf="email.errors.required || email.errors.notOnlyWhiteSpace">Email is required</div>
+            <div *ngIf="email.errors.minlength">Email must be at least 8 characters</div>
+            <div *ngIf="email.errors.maxlength">Email must be at most 50 characters</div>
+            <div *ngIf="email.errors.pattern">Email must be a valid email address</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <section class="divider"></section>
+
+    <!-- submit/cancel button-->
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <a routerLink="/employees">
+        <button class="btn btn-outline-info me-md-2 sized">Cancel</button>
+      </a>
+      <button type="submit" class="btn btn-info me-md-2 sized">Save</button>
+    </div>
+  </form>
 
 </div>

@@ -1,3 +1,7 @@
 .login-page {
  margin-left: 25%;
 }
+.error {
+  color: red;
+  font-size: 10pt;
+}

@@ -1,12 +1,11 @@
-  <nav class="navbar navbar-expand navbar-dark cyan">
-    <a class="navbar-brand text-light" >Angular UI</a>
+<nav class="navbar navbar-expand navbar-dark cyan">
+  <a class="navbar-brand text-light">Angular UI</a>
 
-    <ul class="navbar-nav navbar-collapse justify-content-end">
-      <li class="nav-item">
-        <!-- <a routerLink="/" class="nav-link" *ngIf="!login.isUserLoggedIn()">LogIn</a> -->
-        <a routerLink="/" class="nav-link waves-light" mdbWavesEffect (click)="logOut()" *ngIf="login.isUserLoggedIn()">LogOut</a>
-      </li>
-    </ul>
-  </nav>
-
-
+  <ul class="navbar-nav navbar-collapse justify-content-end">
+    <li class="nav-item">
+      <!-- <a routerLink="/" class="nav-link" *ngIf="!login.isUserLoggedIn()">LogIn</a> -->
+      <a routerLink="/" class="nav-link waves-light" mdbWavesEffect (click)="logOut()"
+        *ngIf="login.isUserLoggedIn()">LogOut</a>
+    </li>
+  </ul>
+</nav>

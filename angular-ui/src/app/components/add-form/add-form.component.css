@@ -1,0 +1,9 @@
+.sized {
+  width: 125px;
+  height: 45px;
+}
+
+.error {
+  color: red;
+  font-size: 10pt;
+}

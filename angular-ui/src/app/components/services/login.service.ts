@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 const baseUrl = 'http://localhost:9001/login/';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' , 'Access-Control-Allow-Origin': '**'})
+  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '**' })
 };
 
 
@@ -19,7 +19,7 @@ export class LoginService {
 
   login(user): Observable<any> {
     // console.log("before" + this.isUserLoggedIn())
-    return this.httpClient.post(baseUrl,user, httpOptions);
+    return this.httpClient.post(baseUrl, user, httpOptions);
   }
 
   isUserLoggedIn() {
@@ -27,7 +27,7 @@ export class LoginService {
     return !(user === null)
   }
 
-   // signup(user) {
+  // signup(user) {
   //   return this.httpClient.post(`${baseUrl}signup`, user,httpOptions);
   // }
 

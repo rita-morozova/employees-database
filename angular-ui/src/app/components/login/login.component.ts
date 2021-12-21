@@ -19,9 +19,9 @@ export class LoginComponent implements OnInit {
   submitted = false;
 
   constructor(private router: Router,
-              private formBuilder: FormBuilder,
-              private loginService: LoginService,
-              private tokenStorage: TokenStorageService
+    private formBuilder: FormBuilder,
+    private loginService: LoginService,
+    private tokenStorage: TokenStorageService
   ) { }
 
   ngOnInit(): void {
@@ -30,15 +30,15 @@ export class LoginComponent implements OnInit {
 
   displayLoginForm() {
     this.loginForm = this.formBuilder.group({
-      email: new FormControl("", [Validators.required, Validators.minLength(8),Validators.maxLength(35), Validators.pattern("^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
-      password: new FormControl("", [Validators.required, Validators.minLength(8), Validators.maxLength(35),  Validators.pattern("[A-Za-z\\'\\- 0-9]*")])
+      email: new FormControl("", [Validators.required, Validators.minLength(8), Validators.maxLength(35), Validators.pattern("^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+      password: new FormControl("", [Validators.required, Validators.minLength(8), Validators.maxLength(35), Validators.pattern("[A-Za-z\\'\\- 0-9]*")])
     })
   }
 
   get email() { return this.loginForm.get('email') }
   get password() { return this.loginForm.get('password') }
 
-  onSubmit(){
+  onSubmit() {
     this.submitted = true;
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
