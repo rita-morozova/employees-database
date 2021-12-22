@@ -1,7 +1,7 @@
-# Employees Database
+# Employee Database
 
 ## Description
-An employees database built using a microservices architechture. A user can add/edit/delete employees from the database.
+An employee database built using a microservices architechture. A user can add/edit/delete employees from the database.
 
 ## Technologies used:
  - Spring Boot
