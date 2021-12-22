@@ -17,4 +17,4 @@ An employees database built using a microservices architechture. A user can add/
  - Google Cloud
  
  ## High-level architecture
- ![Architechture] (https://res.cloudinary.com/diexi8g0j/image/upload/v1640189051/Screenshot_31_f3ju8u.png)
+ ![High-Level Architechture](https://res.cloudinary.com/diexi8g0j/image/upload/v1640189051/Screenshot_31_f3ju8u.png)
