@@ -10,7 +10,7 @@ An employee database built using a microservices architechture. A user can add/e
  - Kubernetes
  - Apache Kafka
  - API Gateway
- - Service Discovery
+ - Eureka Discovery
  - React
  - Angular
  - JSON Web Tokens
