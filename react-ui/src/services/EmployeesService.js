@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from './AuthHeader';
 
-const baseUrl = 'http://localhost:9003/employee';
+const baseUrl = 'http://localhost:8083/employee/employee';
 
 class EmployeesService {
 
