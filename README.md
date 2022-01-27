@@ -1,4 +1,4 @@
-# Employee Database
+# orgChart
 
 ## Description
 An employee database built using a microservices architechture. A user can add/edit/delete employees from the database.
